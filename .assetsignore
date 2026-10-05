@@ -1,0 +1,5 @@
+server.js
+generate-catalogs.js
+wrangler.jsonc
+.git
+node_modules
