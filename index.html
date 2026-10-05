@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Generador de tarjetas</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app">
+    <aside class="panel">
+      <h1>Editor de Tarjeta</h1>
+
+      <section class="group">
+        <h2>Imágenes</h2>
+
+        <div class="upload">
+          <span class="upload-label">Imagen del título</span>
+          <div class="upload-row">
+            <label class="file-btn">Subir imagen
+              <input type="file" id="fileTitle" accept="image/*" hidden>
+            </label>
+            <button type="button" class="btn-small" id="clearTitle">Quitar</button>
+          </div>
+          <span class="file-name" id="nameTitle">Placeholder</span>
+        </div>
+
+        <div class="upload">
+          <span class="upload-label">Imagen de fondo</span>
+          <div class="upload-row">
+            <details class="bg-picker" id="bgPicker">
+              <summary class="file-btn">Elegir</summary>
+              <div class="bg-picker-menu">
+                <div class="bg-choices" id="bgChoices">
+                  <p class="flag-empty">Cargando imágenes de bg...</p>
+                </div>
+              </div>
+            </details>
+            <label class="file-btn">Subir imagen
+              <input type="file" id="fileBg" accept="image/*" hidden>
+            </label>
+            <button type="button" class="btn-small" id="clearBg">Quitar</button>
+          </div>
+          <span class="file-name" id="nameBg">Patrón genérico</span>
+        </div>
+
+        <div class="upload">
+          <span class="upload-label">Foto de perfil</span>
+          <div class="upload-row">
+            <label class="file-btn">Subir imagen
+              <input type="file" id="fileAvatar" accept="image/*" hidden>
+            </label>
+            <button type="button" class="btn-small" id="clearAvatar">Quitar</button>
+          </div>
+          <span class="file-name" id="nameAvatar">Avatar genérico</span>
+        </div>
+
+        <details class="flag-picker" id="flagPicker">
+          <summary>Banderas</summary>
+          <div class="flag-picker-content">
+            <div class="flag-picker-inner">
+              <span class="file-name" id="flagSelectionName">Sin bandera seleccionada</span>
+              <div class="flag-choices" id="flagChoices">
+                <p class="flag-empty">Cargando imágenes de assets...</p>
+              </div>
+            </div>
+          </div>
+        </details>
+        <div class="upload-row flag-upload-row">
+          <label class="file-btn">Subir imagen
+            <input type="file" id="fileFlag" accept="image/*" hidden>
+          </label>
+          <button type="button" class="btn-small" id="clearFlag">Quitar</button>
+        </div>
+      </section>
+
+      <section class="group">
+        <h2>Ajustes de banderas</h2>
+
+        <label for="flagSize">Tamaño
+          <span class="setting-range-row">
+            <input type="range" id="flagSize" min="100" max="360" step="5" value="210">
+            <output id="flagSizeValue" for="flagSize">210px</output>
+          </span>
+        </label>
+
+        <label for="flagOffsetX">Posición X
+          <span class="setting-range-row">
+            <input type="range" id="flagOffsetX" min="-300" max="400" step="5" value="160">
+            <output id="flagOffsetXValue" for="flagOffsetX">160px</output>
+          </span>
+        </label>
+
+        <label for="flagOffsetY">Posición Y
+          <span class="setting-range-row">
+            <input type="range" id="flagOffsetY" min="-300" max="400" step="5" value="160">
+            <output id="flagOffsetYValue" for="flagOffsetY">160px</output>
+          </span>
+        </label>
+      </section>
+
+      <section class="group">
+        <h2>Fondo y máscara</h2>
+
+        <label for="backgroundBlur">Desenfoque
+          <span class="setting-range-row">
+            <input type="range" id="backgroundBlur" min="0" max="30" value="6">
+            <output id="backgroundBlurValue" for="backgroundBlur">6px</output>
+          </span>
+        </label>
+
+        <label for="maskOffset">Posición de la máscara
+          <span class="setting-range-row">
+            <input type="range" id="maskOffset" min="-600" max="600" step="10" value="0">
+            <output id="maskOffsetValue" for="maskOffset">0px</output>
+          </span>
+        </label>
+
+        <label for="maskAngle">Dirección de la diagonal
+          <span class="setting-range-row">
+            <input type="range" id="maskAngle" min="-85" max="-25" step="0.1" value="-56.1">
+            <output id="maskAngleValue" for="maskAngle">-56.1°</output>
+          </span>
+        </label>
+      </section>
+
+      <section class="group">
+        <h2>Ajustes del título</h2>
+
+        <label for="titleScale">Tamaño
+          <span class="setting-range-row">
+            <input type="range" id="titleScale" min="40" max="200" value="100">
+            <output id="titleScaleValue" for="titleScale">100%</output>
+          </span>
+        </label>
+
+        <label for="titleOffsetX">Posición X
+          <span class="setting-range-row">
+            <input type="range" id="titleOffsetX" min="-500" max="500" step="5" value="0">
+            <output id="titleOffsetXValue" for="titleOffsetX">0px</output>
+          </span>
+        </label>
+
+        <label for="titleOffsetY">Posición Y
+          <span class="setting-range-row">
+            <input type="range" id="titleOffsetY" min="-500" max="500" step="5" value="0">
+            <output id="titleOffsetYValue" for="titleOffsetY">0px</output>
+          </span>
+        </label>
+      </section>
+
+      <section class="group">
+        <h2>Glow</h2>
+
+        <label class="glow-color-control">Color del glow
+          <input type="color" id="glowColor" value="#ffffff">
+        </label>
+
+        <label class="glow-intensity-control" for="glowIntensity">Intensidad
+          <span class="setting-range-row">
+            <input type="range" id="glowIntensity" min="0" max="100" value="38">
+            <output id="glowIntensityValue" for="glowIntensity">38%</output>
+          </span>
+        </label>
+      </section>
+
+      <section class="group">
+        <h2>Textos</h2>
+
+        <label for="letterSpacing">Espaciado entre letras
+          <span class="setting-range-row">
+            <input type="range" id="letterSpacing" min="0" max="20" step="0.5" value="0">
+            <output id="letterSpacingValue" for="letterSpacing">0px</output>
+          </span>
+        </label>
+
+        <label>Nombre del usuario
+          <input type="text" id="inName" value="Username">
+        </label>
+
+        <label>Etiqueta principal
+          <input type="text" id="inLabel" value="Nominado">
+        </label>
+
+        <label>Texto inferior
+          <textarea id="inBottom" rows="2">Esto es un texto de prueba para previsualizar el comportamiento del texto</textarea>
+        </label>
+
+        <div class="text-style-controls">
+          <span class="control-title">Degradado de etiqueta principal</span>
+          <div class="gradient-editor">
+            <label>Inicio
+              <input type="color" id="labelGradientStart" value="#ff8a1f">
+            </label>
+            <label>Final
+              <input type="color" id="labelGradientEnd" value="#ffd23f">
+            </label>
+          </div>
+        </div>
+
+        <div class="text-style-controls">
+          <span class="control-title">Degradado de texto inferior</span>
+          <div class="gradient-editor">
+            <label>Inicio
+              <input type="color" id="bottomGradientStart" value="#ff8a1f">
+            </label>
+            <label>Final
+              <input type="color" id="bottomGradientEnd" value="#ffd23f">
+            </label>
+          </div>
+        </div>
+
+        <label for="textOutlineWidth">Grosor del contorno negro
+          <span class="setting-range-row">
+            <input type="range" id="textOutlineWidth" min="0" max="20" step="0.5" value="15">
+            <output id="textOutlineWidthValue" for="textOutlineWidth">15px</output>
+          </span>
+        </label>
+      </section>
+
+      <button id="btnDownload" type="button">Descargar PNG (1920×1200)</button>
+      <button id="btnReset" type="button">Reiniciar plantilla</button>
+    </aside>
+
+    <section class="preview">
+      <canvas id="card" width="1920" height="1200"></canvas>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
